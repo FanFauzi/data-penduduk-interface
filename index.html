@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Data Penduduk</title>
+</head>
+
+<body>
+  <section id="upload-file" class="upload-section">
+    <form class="upload-form">
+      <label for="name">Nama</label>
+      <input type="text" name="name" id="name" required>
+      <label for="region">Alamat</label>
+      <input type="text" name="region" id="region" required>
+      <label for="rt">RT</label>
+      <input type="text" name="rt" id="rt" required>
+      <label for="rw">RW</label>
+      <input type="text" name="rw" id="rw" required>
+      <label for="call">Nomor Handphone</label>
+      <input type="text" name="call" id="call">
+      <label for="image">Gambar</label>
+      <input type="file" name="image" id="image" required>
+      <button type="submit" id="buttonPost">Kirim</button>
+    </form>
+  </section>
+  <section id="get-file">
+    <!-- <label for="cari">Cari</label> -->
+    <input type="text" name="cari" id="input-search">
+    <button type="submit" id="button-search">cari</button>
+    <table id="table-result">
+      <thead>
+        <tr>
+          <th>Nama</th>
+          <th>Alamat</th>
+          <th>Rt</th>
+          <th>Rw</th>
+          <th>Nomor Handphone</th>
+          <th>Gambar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Irfan</td>
+          <td>Taruman</td>
+          <td>8</td>
+          <td>4</td>
+          <td>0943593</td>
+          <td>
+            <img src="./picture-small.jpg" class="image-result">
+          </td>
+        </tr>
+        <tr>
+          <td>Irfan</td>
+          <td>Taruman</td>
+          <td>8</td>
+          <td>4</td>
+          <td>0943593</td>
+          <td>
+            <img src="./picture-small.jpg" class="image-result">
+          </td>
+        </tr>
+      </tbody>
+      <!-- result datas -->
+    </table>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
