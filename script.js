@@ -7,7 +7,7 @@ let inputImage = document.getElementById('image');
 const buttonPost = document.getElementById('buttonPost');
 
 // api
-const endpoint = 'http://localhost:5000/datpen';
+const endpoint = 'https://data-penduduk-service.adaptable.app';
 
 // upload data
 buttonPost.addEventListener('click', (e) => {
