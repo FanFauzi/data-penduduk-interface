@@ -7,7 +7,7 @@ let inputImage = document.getElementById('image');
 const buttonPost = document.getElementById('buttonPost');
 
 // api
-const endpoint = 'https://data-penduduk-service.adaptable.app';
+const endpoint = 'https://data-penduduk-service.adaptable.app/datpen';
 
 // upload data
 buttonPost.addEventListener('click', (e) => {
@@ -34,8 +34,8 @@ buttonPost.addEventListener('click', (e) => {
     body: formData,
   })
     .then((result) => result.json())
-    .then((data) => {
-      console.log(data)
+    .then(() => {
+      // console.log(data)
       inputName.value = '';
       inputRegion.value = '';
       inputRt.value = '';
@@ -52,14 +52,12 @@ const buttonSearch = document.getElementById('button-search');
 buttonSearch.addEventListener('click', () => {
   let inputValue = document.getElementById('input-search');
   const urlSearch = `${endpoint}?name=${inputValue.value}`
-  console.log(inputValue.value)
-  console.log(urlSearch)
   fetch(urlSearch, {
     method: 'GET',
   })
     .then((result) => result.json())
     .then((data) => {
-      console.log(data.data.datpen)
+      // console.log(data.data.datpen)
       const datas = data.data.datpen;
       // console.log(datas);
       createElement(datas);
@@ -68,39 +66,61 @@ buttonSearch.addEventListener('click', () => {
 });
 
 function createElement(datas) {
-  for (let data of datas) {
-    const table = document.getElementById('table-result')
-    // thead result
-    const thead = document.createElement('thead');
-    thead.classList.add('thead-result');
-    // tbody result
-    const tbody = document.createElement('tbody');
-    // tr result
-    const trHead = document.createElement('tr');
-    const trBody = document.createElement('tr');
-    // th result
-    const thName = document.createElement('th');
-    const thRegion = document.createElement('th');
-    const thRt = document.createElement('th');
-    const thRw = document.createElement('th');
-    const thCall = document.createElement('th');
-    const thImage = document.createElement('th');
-    // td result
-    const td = document.createElement('td');
-    
-    // append
-    trHead.append(thName, thRegion, thRt, thRw, thCall, thImage);
-    thead.append(trHead)
-  
-    trBody.append(td);
-    tbody.append(trBody);
-  
-    table.append(thead, tbody);
+  const table = document.getElementById('table-result')
+  // thead result
+  const thead = document.createElement('thead');
+  thead.classList.add('thead-result');
+  // tbody result
+  const tbody = document.createElement('tbody');
+  table.append(thead, tbody);
 
-    console.log(data.name)
-    th.innerHTML = 'Nama'
-    th.innerHTML = 'Alamat'
-    td.innerHTML = data.name
-    td.innerHTML = data.region
+  // tr result
+  const trHead = document.createElement('tr');
+  // th result
+  const thName = document.createElement('th');
+  const thRegion = document.createElement('th');
+  const thRt = document.createElement('th');
+  const thRw = document.createElement('th');
+  const thCall = document.createElement('th');
+  const thImage = document.createElement('th');
+
+  // append
+  trHead.append(thName, thRegion, thRt, thRw, thCall, thImage);
+  thead.append(trHead)
+
+  thName.innerHTML = 'Nama'
+  thRegion.innerHTML = 'Alamat'
+  thRt.innerHTML = 'RT'
+  thRw.innerHTML = 'Rw'
+  thCall.innerHTML = 'Nomor Handphone'
+  thImage.innerHTML = 'Gambar'
+
+
+  for (let data of datas) {
+    // td result
+    const tdName = document.createElement('td');
+    const tdRegion = document.createElement('td');
+    const tdRt = document.createElement('td');
+    const tdRw = document.createElement('td');
+    const tdCall = document.createElement('td');
+    const tdImage = document.createElement('td');
+    const image = document.createElement('img')
+
+    const trBody = document.createElement('tr');
+
+
+    image.classList.add('image-result')
+
+    tbody.append(trBody);
+    trBody.append(tdName, tdRegion, tdRt, tdRw, tdCall, tdImage);
+    tdImage.append(image);
+
+
+    tdName.innerHTML = data.name
+    tdRegion.innerHTML = data.region
+    tdRt.innerHTML = data.rt
+    tdRw.innerHTML = data.rw
+    tdCall.innerHTML = data.call
+    image.src = data.image_url
   }
 }
