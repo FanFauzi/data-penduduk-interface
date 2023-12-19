@@ -38,25 +38,26 @@ buttonPost.addEventListener('click', (e) => {
   })
     .then((result) =>
       result.json())
-  .then((data) => {
-    if (data.status === 'succes') {
-      alert('data berhasil ditambahkan');
-    }
+    .then((data) => {
+      // console.log(hai)
+      console.log(data);
+      if (data.status === 'succes') {
+        alert('data berhasil ditambahkan');
+      }
 
-    if (data.statusCode === 413) {
-      alert('Data tidak dapat di simpan, ukuran gambar terlalu besar');
-    }
+      if (data.statusCode === 413) {
+        alert('Data tidak dapat di simpan, ukuran gambar terlalu besar');
+      }
 
-    console.log(data)
-    inputName.value = '';
-    inputRegion.value = '';
-    inputRt.value = '';
-    inputRw.value = '';
-    inputCall.value = '';
-    inputImage.value = '';
-  }
-  )
-  .catch((error) => console.error('Error', error))
+      inputName.value = '';
+      inputRegion.value = '';
+      inputRt.value = '';
+      inputRw.value = '';
+      inputCall.value = '';
+      inputImage.value = '';
+    }
+    )
+    .catch((error) => console.error('Error', error))
 });
 
 const buttonSearch = document.getElementById('button-search');
