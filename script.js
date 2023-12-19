@@ -6,7 +6,10 @@ let inputCall = document.getElementById('call');
 let inputImage = document.getElementById('image');
 const buttonPost = document.getElementById('buttonPost');
 
+
 // api
+// test
+// const endpoint = 'http://localhost:5000/datpen';
 const endpoint = 'https://data-penduduk-service.adaptable.app/datpen';
 
 // upload data
@@ -33,18 +36,27 @@ buttonPost.addEventListener('click', (e) => {
     method: 'POST',
     body: formData,
   })
-    .then((result) => result.json())
-    .then(() => {
-      // console.log(data)
-      inputName.value = '';
-      inputRegion.value = '';
-      inputRt.value = '';
-      inputRw.value = '';
-      inputCall.value = '';
-      inputImage.value = '';
+    .then((result) =>
+      result.json())
+  .then((data) => {
+    if (data.status === 'succes') {
+      alert('data berhasil ditambahkan');
     }
-    )
-    .catch((error) => console.error('Error', error))
+
+    if (data.statusCode === 413) {
+      alert('Data tidak dapat di simpan, ukuran gambar terlalu besar');
+    }
+
+    console.log(data)
+    inputName.value = '';
+    inputRegion.value = '';
+    inputRt.value = '';
+    inputRw.value = '';
+    inputCall.value = '';
+    inputImage.value = '';
+  }
+  )
+  .catch((error) => console.error('Error', error))
 });
 
 const buttonSearch = document.getElementById('button-search');
@@ -57,15 +69,26 @@ buttonSearch.addEventListener('click', () => {
   })
     .then((result) => result.json())
     .then((data) => {
-      // console.log(data.data.datpen)
+      console.log(data.data)
       const datas = data.data.datpen;
       // console.log(datas);
       createElement(datas);
     })
     .catch((error) => console.error('Error', error))
+  inputValue.value = '';
 });
 
+function clearTable() {
+  const table = document.getElementById('table-result');
+  // Hapus semua elemen anak (thead dan tbody)
+  while (table.firstChild) {
+    table.removeChild(table.firstChild);
+  }
+}
+
 function createElement(datas) {
+  let number = 1;
+  clearTable();
   const table = document.getElementById('table-result')
   // thead result
   const thead = document.createElement('thead');
@@ -77,6 +100,7 @@ function createElement(datas) {
   // tr result
   const trHead = document.createElement('tr');
   // th result
+  const thNumber = document.createElement('th');
   const thName = document.createElement('th');
   const thRegion = document.createElement('th');
   const thRt = document.createElement('th');
@@ -85,9 +109,10 @@ function createElement(datas) {
   const thImage = document.createElement('th');
 
   // append
-  trHead.append(thName, thRegion, thRt, thRw, thCall, thImage);
+  trHead.append(thNumber, thName, thRegion, thRt, thRw, thCall, thImage);
   thead.append(trHead)
 
+  thNumber.innerHTML = 'No'
   thName.innerHTML = 'Nama'
   thRegion.innerHTML = 'Alamat'
   thRt.innerHTML = 'RT'
@@ -98,6 +123,7 @@ function createElement(datas) {
 
   for (let data of datas) {
     // td result
+    const tdNumber = document.createElement('td');
     const tdName = document.createElement('td');
     const tdRegion = document.createElement('td');
     const tdRt = document.createElement('td');
@@ -112,10 +138,11 @@ function createElement(datas) {
     image.classList.add('image-result')
 
     tbody.append(trBody);
-    trBody.append(tdName, tdRegion, tdRt, tdRw, tdCall, tdImage);
+    trBody.append(tdNumber, tdName, tdRegion, tdRt, tdRw, tdCall, tdImage);
     tdImage.append(image);
 
 
+    tdNumber.innerHTML = number++
     tdName.innerHTML = data.name
     tdRegion.innerHTML = data.region
     tdRt.innerHTML = data.rt
