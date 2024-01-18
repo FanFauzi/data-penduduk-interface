@@ -2,6 +2,34 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  color: white;
+}
+
+body {
+  background-color: black;
+}
+
+main {
+  height: 100vh;
+  /* background: #000; */
+  /* z-index: -2; */
+  /* background-image: url(./kj.jpg); */
+  /* background-size: cover; */
+  /* background-size: 80%;
+  background-position: center; */
+}
+
+main h1 {
+  text-align: center;
+  padding-bottom: 50px;
+}
+
+.pdip {
+  width: 100%;
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  filter: blur(2px);
 }
 
 section {
@@ -32,11 +60,13 @@ table {
 
 table thead th, table tbody td {
   /* padding: 5px; */
-  border: 1px solid black;
+  background-color: black;
+  border: 1px solid rgb(255, 255, 255);
 }
 
 table tbody tr td {
   /* height: 10px; */
+  background-color: black;
   width: 10px;
   text-align: center;
 }
@@ -49,3 +79,11 @@ table tbody td .image-result {
   width: 100%;
   padding: 5px;
 }
+
+input, button {
+  color: black;
+}
+
+/* @media screen and (min-width: ) {
+  
+} */

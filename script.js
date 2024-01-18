@@ -8,9 +8,9 @@ const buttonPost = document.getElementById('buttonPost');
 
 
 // api
+const endpoint = 'https://data-penduduk-service.adaptable.app/datpen';
 // test
 // const endpoint = 'http://localhost:5000/datpen';
-const endpoint = 'https://data-penduduk-service.adaptable.app/datpen';
 
 // upload data
 buttonPost.addEventListener('click', (e) => {
